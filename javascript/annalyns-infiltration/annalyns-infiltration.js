@@ -87,11 +87,14 @@ export function canFreePrisoner(
   prisonerIsAwake,
   petDogIsPresent
 ) {
-  if (petDogIsPresent && !prisonerIsAwake && !knightIsAwake && !archerIsAwake) {
+  const everyoneIsAwake = prisonerIsAwake && archerIsAwake && knightIsAwake;
+  const everyoneIsAsleep = !prisonerIsAwake && !knightIsAwake && !archerIsAwake;
+
+  if (petDogIsPresent && everyoneIsAsleep) {
     return true;
   } else if (petDogIsPresent && prisonerIsAwake && !archerIsAwake && !knightIsAwake) {
     return true;
-  } else if (petDogIsPresent && prisonerIsAwake && archerIsAwake && knightIsAwake) {
+  } else if (petDogIsPresent && everyoneIsAwake) {
     return false;
   } else if (petDogIsPresent && !prisonerIsAwake && knightIsAwake && archerIsAwake) {
     return false;
