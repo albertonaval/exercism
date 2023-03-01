@@ -5,4 +5,6 @@
 
 export const gigasecond = (time) => {
   return new Date(time.getTime() + Math.pow(10, 12))
+
+  //Date.getTime() => representa en milisegundos la fecha que se le pasa + la potencia solicitada.
 };
