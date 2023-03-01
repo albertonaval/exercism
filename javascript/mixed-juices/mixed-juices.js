@@ -4,6 +4,7 @@
 // the @ts-check directive. It will give you helpful autocompletion when
 // implementing this exercise.
 
+import { time } from "console";
 import { stringify } from "querystring";
 
 /**
@@ -39,7 +40,20 @@ export function timeToMixJuice(name) {
  * @param {string[]} limes
  * @returns {number} number of limes cut
  */
+
+const LimesToWedges = {
+  small: 6,
+  medium: 8,
+  large: 10,
+}
 export function limesToCut(wedgesNeeded, limes) {
+  let limesCut = 0
+  while (wedgesNeeded > 0 && limes.length > 0) {
+    limesCut++
+    wedgesNeeded -= LimesToWedges[limes.shift()]
+  }
+
+  return limesCut
 
 }
 
@@ -51,5 +65,11 @@ export function limesToCut(wedgesNeeded, limes) {
  * @returns {string[]} remaining orders after the time is up
  */
 export function remainingOrders(timeLeft, orders) {
-  throw new Error('Please implement the remainingOrders function');
+
+  while (timeLeft > 0 && orders.length > 0) {
+    timeLeft -= timeToMixJuice(orders[0])
+    orders.shift()
+  }
+  return orders
+
 }
